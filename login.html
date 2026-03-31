@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login — THE SAMPLE ONE</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<nav class="navbar">
+  <a href="index.html" class="nav-logo">THE SAMPLE <span>ONE</span></a>
+  <div class="nav-links">
+    <a href="index.html">Home</a><a href="menu.html">Menu</a>
+    <a href="about.html">About</a><a href="contact.html">Contact</a>
+  </div>
+  <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="index.html">Home</a><a href="menu.html">Menu</a><a href="about.html">About</a>
+</div>
+
+<div class="login-page">
+  <div class="login-card">
+    <div class="login-logo">
+      <div style="font-size:3rem;margin-bottom:.5rem">🍽️</div>
+      <h2>Welcome Back</h2>
+      <p>THE SAMPLE ONE · Ranchi</p>
+    </div>
+
+    <form id="login-form">
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" id="email" placeholder="you@example.com" required />
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="password" placeholder="••••••••" required minlength="4" />
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem">
+        <label style="display:flex;align-items:center;gap:.5rem;font-size:.85rem;color:var(--muted);cursor:pointer">
+          <input type="checkbox" style="accent-color:var(--gold)" /> Remember me
+        </label>
+        <a href="#" style="font-size:.85rem;color:var(--gold)">Forgot password?</a>
+      </div>
+      <button type="submit" class="btn btn-primary btn-full">Login 🚀</button>
+    </form>
+
+    <div class="login-divider">or continue as guest</div>
+    <button class="btn btn-dark btn-full" onclick="guestLogin()">👤 Guest Checkout</button>
+
+    <div style="text-align:center;margin-top:1.5rem;font-size:.85rem;color:var(--muted)">
+      New to The Sample One?
+      <a href="#" style="color:var(--gold);margin-left:.25rem" onclick="quickSignup()">Sign up free →</a>
+    </div>
+    <div style="text-align:center;margin-top:1rem">
+      <a href="admin.html" style="font-size:.8rem;color:var(--muted)">Admin Panel →</a>
+    </div>
+    <div style="text-align:center;margin-top:1rem;background:rgba(244,180,0,.08);border:1px solid rgba(244,180,0,.2);border-radius:8px;padding:.75rem;font-size:.8rem;color:var(--muted)">
+      💡 Use any email + 4+ char password to login as demo user
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+<script>
+function guestLogin() {
+  const user = { name: 'Guest User', email: 'guest@demo.com', address: 'Ranchi, Jharkhand' };
+  localStorage.setItem('tso_user', JSON.stringify(user));
+  if(typeof toast==='function') toast('Logged in as Guest!', 'success');
+  setTimeout(() => location.href = 'index.html', 1000);
+}
+function quickSignup() {
+  document.getElementById('email').value = 'user@thesampleone.com';
+  document.getElementById('password').value = 'demo123';
+  if(typeof toast==='function') toast('Demo credentials filled!', 'info');
+}
+document.addEventListener('DOMContentLoaded', () => {
+  if (localStorage.getItem('tso_user')) location.href = 'index.html';
+});
+</script>
+</body>
+</html>

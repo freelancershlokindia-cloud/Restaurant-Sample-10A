@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reviews — THE SAMPLE ONE</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<nav class="navbar">
+  <a href="index.html" class="nav-logo">THE SAMPLE <span>ONE</span></a>
+  <div class="nav-links">
+    <a href="index.html">Home</a><a href="menu.html">Menu</a>
+    <a href="about.html">About</a><a href="reviews.html" class="active">Reviews</a>
+    <a href="contact.html">Contact</a><a href="orders.html">My Orders</a>
+    <a href="tracking.html">🚴 Track</a>
+  </div>
+  <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="index.html">Home</a><a href="menu.html">Menu</a><a href="reviews.html">Reviews</a><a href="contact.html">Contact</a>
+</div>
+
+<div class="page-hero">
+  <span class="tag">Guest Reviews</span>
+  <h1>What They're <span class="gold">Saying</span></h1>
+  <div class="divider"><span class="divider-icon">✦</span></div>
+  <p>Over 2,300 five-star reviews from our beloved guests across Ranchi.</p>
+</div>
+
+<!-- RATING SUMMARY -->
+<section style="padding:3rem 5%">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:200px 1fr;gap:3rem;align-items:center;background:var(--dark2);border:1px solid rgba(255,255,255,.06);border-radius:var(--radius-lg);padding:2.5rem;margin-bottom:4rem">
+      <div style="text-align:center">
+        <div style="font-family:var(--font-display);font-size:5rem;font-weight:900;color:var(--gold);line-height:1">4.9</div>
+        <div style="color:var(--gold);font-size:1.5rem;margin:.5rem 0">★★★★★</div>
+        <p style="font-size:.85rem">Based on 2,340 reviews</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:.75rem">
+        <div style="display:flex;align-items:center;gap:1rem">
+          <span style="color:var(--gold);font-size:.85rem;width:20px">5★</span>
+          <div style="flex:1;background:var(--dark3);border-radius:4px;height:8px"><div style="width:88%;height:100%;background:var(--gold);border-radius:4px"></div></div>
+          <span style="font-size:.8rem;color:var(--muted);width:35px">88%</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:1rem">
+          <span style="color:var(--gold);font-size:.85rem;width:20px">4★</span>
+          <div style="flex:1;background:var(--dark3);border-radius:4px;height:8px"><div style="width:9%;height:100%;background:var(--gold);border-radius:4px;opacity:.7"></div></div>
+          <span style="font-size:.8rem;color:var(--muted);width:35px">9%</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:1rem">
+          <span style="color:var(--gold);font-size:.85rem;width:20px">3★</span>
+          <div style="flex:1;background:var(--dark3);border-radius:4px;height:8px"><div style="width:2%;height:100%;background:var(--gold);border-radius:4px;opacity:.5"></div></div>
+          <span style="font-size:.8rem;color:var(--muted);width:35px">2%</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:1rem">
+          <span style="color:var(--gold);font-size:.85rem;width:20px">2★</span>
+          <div style="flex:1;background:var(--dark3);border-radius:4px;height:8px"><div style="width:1%;height:100%;background:var(--gold);border-radius:4px;opacity:.3"></div></div>
+          <span style="font-size:.8rem;color:var(--muted);width:35px">1%</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:1rem">
+          <span style="color:var(--gold);font-size:.85rem;width:20px">1★</span>
+          <div style="flex:1;background:var(--dark3);border-radius:4px;height:8px"><div style="width:0%;height:100%;background:var(--gold);border-radius:4px;opacity:.2"></div></div>
+          <span style="font-size:.8rem;color:var(--muted);width:35px">0%</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="reviews-grid">
+      <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"THE SAMPLE ONE has completely spoiled me. I can't go back to any other restaurant in Ranchi. The Butter Chicken is absolutely divine — perfectly spiced and so smooth."</p><div class="reviewer"><div class="reviewer-avatar">AK</div><div class="reviewer-info"><h5>Amit Kumar</h5><span>Lalpur, Ranchi · Verified Purchase</span></div></div></div>
+      <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"The live GPS tracking feature made me feel so confident about my order. I could watch Rajesh approaching my house in real time! Truly Zomato-level experience locally."</p><div class="reviewer"><div class="reviewer-avatar">PS</div><div class="reviewer-info"><h5>Priya Singh</h5><span>Kanke Road, Ranchi · Verified Purchase</span></div></div></div>
+      <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"Hyderabadi Biryani is THE best in Jharkhand. I've tried everywhere but nothing comes close. The layers of flavour just keep revealing themselves!"</p><div class="reviewer"><div class="reviewer-avatar">RV</div><div class="reviewer-info"><h5>Rahul Verma</h5><span>Ashok Nagar · Verified Purchase</span></div></div></div>
+      <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"The Gulab Jamun Cheesecake fusion deserves a Michelin star. My wife's birthday was made unforgettable by this dessert. Will be ordering every month!"</p><div class="reviewer"><div class="reviewer-avatar">SD</div><div class="reviewer-info"><h5>Suresh Das</h5><span>Doranda, Ranchi · Verified Purchase</span></div></div></div>
+      <div class="review-card"><div class="review-stars">★★★★☆</div><p class="review-text">"Fast delivery, hot food, and excellent packaging. The invoice system with GST breakdown is so professional. Great for office orders!"</p><div class="reviewer"><div class="reviewer-avatar">MG</div><div class="reviewer-info"><h5>Meera Gupta</h5><span>Harmu Road · Verified Purchase</span></div></div></div>
+      <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"Ordered for a family gathering of 15 people. Everything was perfect — hot, fresh, and presented beautifully. The Dal Makhani especially was outstanding."</p><div class="reviewer"><div class="reviewer-avatar">NJ</div><div class="reviewer-info"><h5>Nisha Jha</h5><span>Booty More · Verified Purchase</span></div></div></div>
+    </div>
+
+    <!-- WRITE REVIEW -->
+    <div style="margin-top:4rem;background:var(--dark2);border:1px solid rgba(255,255,255,.06);border-radius:var(--radius-lg);padding:2.5rem;max-width:600px;margin-left:auto;margin-right:auto">
+      <h3 style="margin-bottom:1.5rem;text-align:center">Write a <span class="gold">Review</span></h3>
+      <form id="review-form">
+        <div style="text-align:center;margin-bottom:1.5rem">
+          <p style="font-size:.85rem;color:var(--muted);margin-bottom:.75rem">Your Rating</p>
+          <div style="display:flex;gap:.5rem;justify-content:center;font-size:1.8rem">
+            <button type="button" class="star-btn" data-val="1" style="background:none;border:none;cursor:pointer;color:var(--gold)">★</button>
+            <button type="button" class="star-btn" data-val="2" style="background:none;border:none;cursor:pointer;color:var(--gold)">★</button>
+            <button type="button" class="star-btn" data-val="3" style="background:none;border:none;cursor:pointer;color:var(--gold)">★</button>
+            <button type="button" class="star-btn" data-val="4" style="background:none;border:none;cursor:pointer;color:var(--gold)">★</button>
+            <button type="button" class="star-btn" data-val="5" style="background:none;border:none;cursor:pointer;color:var(--gold)">★</button>
+          </div>
+        </div>
+        <div class="form-group"><label>Your Name</label><input type="text" placeholder="Amit Kumar" required /></div>
+        <div class="form-group"><label>Your Review</label><textarea placeholder="Tell us about your experience…" required></textarea></div>
+        <button type="submit" class="btn btn-primary btn-full">Submit Review ⭐</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand"><h3>THE SAMPLE ONE</h3><p>Premium dining in Ranchi.</p></div>
+    <div class="footer-col"><h5>Navigate</h5><a href="index.html">Home</a><a href="menu.html">Menu</a><a href="about.html">About</a></div>
+    <div class="footer-col"><h5>Order</h5><a href="orders.html">My Orders</a><a href="tracking.html">Track</a></div>
+    <div class="footer-col"><h5>Contact</h5><a href="#">+91 98765 43210</a></div>
+  </div>
+  <div class="footer-bottom"><p>© 2025 The Sample One</p></div>
+</footer>
+<button class="back-to-top">↑</button>
+<script src="script.js"></script>
+</body>
+</html>

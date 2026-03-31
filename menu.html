@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Menu — THE SAMPLE ONE</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<nav class="navbar">
+  <a href="index.html" class="nav-logo">THE SAMPLE <span>ONE</span></a>
+  <div class="nav-links">
+    <a href="index.html">Home</a><a href="menu.html" class="active">Menu</a>
+    <a href="about.html">About</a><a href="reviews.html">Reviews</a>
+    <a href="contact.html">Contact</a><a href="orders.html">My Orders</a>
+    <a href="tracking.html">🚴 Track</a>
+  </div>
+  <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="index.html">Home</a><a href="menu.html">Menu</a><a href="about.html">About</a>
+  <a href="reviews.html">Reviews</a><a href="contact.html">Contact</a>
+  <a href="orders.html">My Orders</a><a href="tracking.html">🚴 Track</a>
+</div>
+
+<div class="page-hero">
+  <span class="tag">Our Menu</span>
+  <h1>Crafted with <span class="gold">Passion</span></h1>
+  <div class="divider"><span class="divider-icon">✦</span></div>
+  <p>Every dish is a masterpiece, prepared fresh daily using the finest locally-sourced ingredients.</p>
+</div>
+
+<section>
+  <div class="container">
+    <div class="menu-filters">
+      <button class="filter-btn active" data-cat="all">All Items</button>
+      <button class="filter-btn" data-cat="starter">Starters</button>
+      <button class="filter-btn" data-cat="main">Main Course</button>
+      <button class="filter-btn" data-cat="bread">Breads</button>
+      <button class="filter-btn" data-cat="rice">Rice & Biryani</button>
+      <button class="filter-btn" data-cat="dessert">Desserts</button>
+      <button class="filter-btn" data-cat="drink">Beverages</button>
+    </div>
+
+    <div class="menu-grid" id="menu-grid">
+
+      <!-- STARTERS -->
+      <div class="menu-card" data-cat="starter">
+        <div class="menu-img">🥗<span class="menu-badge">Popular</span></div>
+        <div class="menu-body">
+          <h4>Tandoori Paneer Tikka</h4><p>Marinated paneer in yoghurt & spices, charred in tandoor. Served with mint chutney.</p>
+          <div class="menu-footer"><span class="price">₹299</span><div style="display:flex;align-items:center;gap:.75rem"><span class="rating">★ 4.8</span><button class="add-btn" onclick="addToCart({id:'s1',name:'Paneer Tikka',price:299,icon:'🥗'})">+</button></div></div>
+        </div>
+      </div>
+      <div class="menu-card" data-cat="starter">
+        <div class="menu-img">🍗</div>
+        <div class="menu-body">
+          <h4>Chicken 65</h4><p>Crispy, spiced fried chicken cubes tossed with curry leaves and chillies.</p>
+          <div class="menu-footer"><span class="price">₹329</span><div style="display:flex;align-items:center;gap:.75rem"><span class="rating">★ 4.7</span><button class="add-btn" onclick="addToCart({id:'s2',name:'Chicken 65',price:329,icon:'🍗'})">+</button></div></div>
+        </div>
+      </div>
+      <div class="menu-card" data-cat="starter">
+        <div class="menu-img">🥚</div>
+        <div class="menu-body">
+          <h4>Hara Bhara Kebab</h4><p>Spinach & pea patties spiced with garam masala, served with tamarind chutney.</p>
+          <div class="menu-footer"><span class="price">₹229</span><div style="display:flex;align-items:center;gap:.75rem"><span class="rating">★ 4.6</span><button class="add-btn" onclick="addToCart({id:'s3',name:'Hara Bhara Kebab',price:229,icon:'🥚'})">+</button></div></div>
+        </div>
+      </div>
+
+      <!-- MAIN COURSE -->
+      <div class="menu-card" data-cat="main">
+        <div class="menu-img">🍛<span class="menu-badge">Bestseller</span></div>
+        <div class="menu-body">
+          <h4>Butter Chicken</h4><p>Tender chicken in rich tomato-butter gravy, slow-cooked to silky perfection.</p>
+          <div class="menu-footer"><span class="price">₹349</span><div style="display:flex;align-items:center;gap:.75rem"><span class="rating">★ 4.9</span><button class="add-btn" onclick="addToCart({id:'m1',name:'Butter Chicken',price:349,icon:'🍛'})">+</button></div></div>
+        </div>
+      </div>
+      <div class="menu-card" data-cat="main">
+        <div class="menu-img">🍲</div>
+        <div class="menu-body">
+          <h4>Dal Makhani</h4><p>Slow-cooked black lentils with cream, butter, and a hint of smoke — a timeless classic.</p>
+          <div class="menu-footer"><span class="price">₹249</span><div style="display:flex;align-items:center;gap:.75rem"><span class="rating">★ 4.8</span><button class="add-btn" onclick="addToCart({id:'m2',name:'Dal Makhani',price:249,icon:'🍲'})">+</button></div></div>
+        </div>
+      </div>
+      <div class="menu-card" data-cat="main">
+        <div class="menu-img">🍖</div>
+        <div class="menu-body">
+          <h4>Mutton Rogan Josh</h4><p>Tender slow-braised mutton in aromatic Kashmiri spices — a royal experience.</p>
+          <div class="menu-footer"><span class="price">₹549</span><div style="display:flex;align-items:center;gap:.75rem"><span class="rating">★ 4.9</span><button class="add-btn" onclick="addToCart({id:'m3',name:'Mutton Rogan Josh',price:549,icon:'🍖'})">+</button></div></div>
+        </div>
+      </div>
+      <div class="menu-card" data-cat="main">
+        <div class="menu-img">🫕</div>
+        <div class="menu-body">
+          <h4>Paneer Makhani</h4><p>Soft paneer cubes in velvety tomato-cashew gravy. Rich, creamy, indulgent.</p>
+          <div class="menu-footer"><span class="price">₹319</span><div style="display:flex;align-items:center;gap:.75rem"><span class="rating">★ 4.7</span><button class="add-btn" onclick="addToCart({id:'m4',name:'Paneer Makhani',price:319,icon:'🫕'})">+</button></div></div>
+        </div>
+      </div>
+
+      <!-- BREADS -->
+      <div class="menu-card" data-cat="bread">
+        <div class="menu-img">🫓</div>
+        <div class="menu-body">
+          <h4>Butter Naan</h4><p>Fluffy tandoor-baked flatbread slathered with fresh butter. Pairs with everything.</p>
+          <div class="menu-footer"><span class="price">₹49</span><div style="display:flex;align-items:center;gap:.75rem"><span class="rating">★ 4.8</span><button class="add-btn" onclick="addToCart({id:'b1',name:'Butter Naan',price:49,icon:'🫓'})">+</button></div></div>
+        </div>
+      </div>
+      <div class="menu-card" data-cat="bread">
+        <div class="menu-img">🥪</div>
+        <div class="menu-body">
+          <h4>Garlic Kulcha</h4><p>Stuffed bread with garlic and herbs, baked to a golden perfection.</p>
+          <div class="menu-footer"><span class="price">₹79</span><div style="display:flex;align-items:center;gap:.75rem"><span class="rating">★ 4.7</span><button class="add-btn" onclick="addToCart({id:'b2',name:'Garlic Kulcha',price:79,icon:'🥪'})">+</button></div></div>
+        </div>
+      </div>
+
+      <!-- RICE & BIRYANI -->
+      <div class="menu-card" data-cat="rice">
+        <div class="menu-img">🍚<span class="menu-badge">Chef's Pick</span></div>
+        <div class="menu-body">
+          <h4>Hyderabadi Dum Biryani</h4><p>Slow-cooked basmati rice layered with spiced meat or vegetables. Legendary.</p>
+          <div class="menu-footer"><span class="price">₹449</span><div style="display:flex;align-items:center;gap:.75rem"><span class="rating">★ 4.9</span><button class="add-btn" onclick="addToCart({id:'r1',name:'Hyderabadi Biryani',price:449,icon:'🍚'})">+</button></div></div>
+        </div>
+      </div>
+      <div class="menu-card" data-cat="rice">
+        <div class="menu-img">🍜</div>
+        <div class="menu-body">
+          <h4>Jeera Rice</h4><p>Fragrant cumin-tempered basmati rice — the perfect companion.</p>
+          <div class="menu-footer"><span class="price">₹149</span><div style="display:flex;align-items:center;gap:.75rem"><span class="rating">★ 4.6</span><button class="add-btn" onclick="addToCart({id:'r2',name:'Jeera Rice',price:149,icon:'🍜'})">+</button></div></div>
+        </div>
+      </div>
+
+      <!-- DESSERTS -->
+      <div class="menu-card" data-cat="dessert">
+        <div class="menu-img">🍮<span class="menu-badge">New</span></div>
+        <div class="menu-body">
+          <h4>Gulab Jamun Cheesecake</h4><p>A stunning fusion — warm gulab jamun atop New York–style cheesecake.</p>
+          <div class="menu-footer"><span class="price">₹249</span><div style="display:flex;align-items:center;gap:.75rem"><span class="rating">★ 4.8</span><button class="add-btn" onclick="addToCart({id:'d1',name:'GJ Cheesecake',price:249,icon:'🍮'})">+</button></div></div>
+        </div>
+      </div>
+      <div class="menu-card" data-cat="dessert">
+        <div class="menu-img">🍨</div>
+        <div class="menu-body">
+          <h4>Kulfi Falooda</h4><p>Creamy saffron kulfi with rose falooda, basil seeds, and rabdi.</p>
+          <div class="menu-footer"><span class="price">₹179</span><div style="display:flex;align-items:center;gap:.75rem"><span class="rating">★ 4.7</span><button class="add-btn" onclick="addToCart({id:'d2',name:'Kulfi Falooda',price:179,icon:'🍨'})">+</button></div></div>
+        </div>
+      </div>
+      <div class="menu-card" data-cat="dessert">
+        <div class="menu-img">🍯</div>
+        <div class="menu-body">
+          <h4>Rasmalai</h4><p>Soft cottage cheese dumplings in sweetened saffron-cardamom milk.</p>
+          <div class="menu-footer"><span class="price">₹149</span><div style="display:flex;align-items:center;gap:.75rem"><span class="rating">★ 4.9</span><button class="add-btn" onclick="addToCart({id:'d3',name:'Rasmalai',price:149,icon:'🍯'})">+</button></div></div>
+        </div>
+      </div>
+
+      <!-- BEVERAGES -->
+      <div class="menu-card" data-cat="drink">
+        <div class="menu-img">🥛</div>
+        <div class="menu-body">
+          <h4>Mango Lassi</h4><p>Thick, chilled yoghurt blended with Alphonso mangoes and a hint of cardamom.</p>
+          <div class="menu-footer"><span class="price">₹119</span><div style="display:flex;align-items:center;gap:.75rem"><span class="rating">★ 4.8</span><button class="add-btn" onclick="addToCart({id:'dr1',name:'Mango Lassi',price:119,icon:'🥛'})">+</button></div></div>
+        </div>
+      </div>
+      <div class="menu-card" data-cat="drink">
+        <div class="menu-img">🍹</div>
+        <div class="menu-body">
+          <h4>Virgin Mojito</h4><p>Fresh mint, lime, sugar syrup, and soda — zesty and refreshing.</p>
+          <div class="menu-footer"><span class="price">₹149</span><div style="display:flex;align-items:center;gap:.75rem"><span class="rating">★ 4.6</span><button class="add-btn" onclick="addToCart({id:'dr2',name:'Virgin Mojito',price:149,icon:'🍹'})">+</button></div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand"><h3>THE SAMPLE ONE</h3><p>Premium dining in the heart of Ranchi since 2018.</p></div>
+    <div class="footer-col"><h5>Navigate</h5><a href="index.html">Home</a><a href="menu.html">Menu</a><a href="orders.html">Orders</a><a href="tracking.html">Track</a></div>
+    <div class="footer-col"><h5>Info</h5><a href="about.html">About</a><a href="contact.html">Contact</a><a href="admin.html">Admin</a></div>
+    <div class="footer-col"><h5>Contact</h5><a href="#">Main Road, Ranchi</a><a href="#">+91 98765 43210</a></div>
+  </div>
+  <div class="footer-bottom"><p>📍 Main Road, Ranchi, Jharkhand</p><p>© 2025 The Sample One</p></div>
+</footer>
+
+<button class="cart-icon" id="cart-btn" aria-label="Cart">🛒<span class="cart-count" style="display:none">0</span></button>
+<div class="cart-overlay" id="cart-overlay"></div>
+<div class="cart-sidebar" id="cart-sidebar">
+  <div class="cart-header"><h3>Your Cart 🛒</h3><button class="cart-close" id="cart-close-btn">✕</button></div>
+  <div class="cart-items" id="cart-list"></div>
+  <div class="cart-footer">
+    <div class="cart-total"><span>Total</span><strong id="cart-total">₹0</strong></div>
+    <button class="btn btn-primary btn-full" onclick="checkout()">Checkout & Track 🚀</button>
+  </div>
+</div>
+<button class="back-to-top">↑</button>
+<script src="script.js"></script>
+</body>
+</html>

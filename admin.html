@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Panel — THE SAMPLE ONE</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body { background: var(--black); }
+    .admin-wrap { padding-top: var(--nav-h); min-height: 100vh; }
+    .admin-login-page {
+      min-height: calc(100vh - var(--nav-h));
+      display: flex; align-items: center; justify-content: center; padding: 2rem;
+    }
+    .admin-section { display: none; }
+    .admin-section.show { display: block; }
+    #admin-dashboard { display: none; }
+    .recent-section { margin-top: 2rem; }
+    .revenue-bar { height: 6px; background: var(--dark3); border-radius: 3px; margin-top: .5rem; }
+    .revenue-fill { height: 100%; background: var(--gold); border-radius: 3px; transition: width 1s ease; }
+  </style>
+</head>
+<body>
+<nav class="navbar">
+  <a href="index.html" class="nav-logo">THE SAMPLE <span>ONE</span></a>
+  <div class="nav-links">
+    <a href="index.html">Home</a><a href="menu.html">Menu</a>
+    <a href="orders.html">Orders</a><a href="tracking.html">🚴 Track</a>
+    <a href="admin.html" class="active">Admin</a>
+  </div>
+  <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="index.html">Home</a><a href="menu.html">Menu</a>
+  <a href="orders.html">Orders</a><a href="admin.html">Admin</a>
+</div>
+
+<div class="admin-wrap">
+
+  <!-- ADMIN LOGIN -->
+  <div id="admin-login-section" style="display:none">
+    <div class="admin-login-page">
+      <div class="login-card" style="max-width:440px">
+        <div class="login-logo">
+          <div style="font-size:2.5rem;margin-bottom:.5rem">🔐</div>
+          <h2>Admin Access</h2>
+          <p>THE SAMPLE ONE · Ranchi</p>
+          <p style="margin-top:.5rem;font-size:.8rem;color:var(--gold)">Use: admin@thesampleone.com / admin123</p>
+        </div>
+        <form id="admin-login-form">
+          <div class="form-group">
+            <label>Admin Email</label>
+            <input type="email" id="admin-email" placeholder="admin@thesampleone.com" required />
+          </div>
+          <div class="form-group">
+            <label>Password</label>
+            <input type="password" id="admin-pass" placeholder="••••••••" required />
+          </div>
+          <button type="submit" class="btn btn-primary btn-full">Login to Admin Panel</button>
+        </form>
+        <div style="text-align:center;margin-top:1.5rem">
+          <a href="index.html" style="font-size:.85rem;color:var(--muted)">← Back to website</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ADMIN DASHBOARD -->
+  <div id="admin-dashboard" style="display:none">
+    <div class="admin-layout">
+
+      <!-- SIDEBAR -->
+      <div class="admin-sidebar">
+        <div class="admin-logo">
+          <h3>⚙️ Admin Panel</h3>
+          <p>THE SAMPLE ONE · Ranchi</p>
+        </div>
+        <nav class="admin-nav">
+          <button class="admin-nav-item active" data-section="section-dashboard">
+            <span class="nav-icon">📊</span> Dashboard
+          </button>
+          <button class="admin-nav-item" data-section="section-orders">
+            <span class="nav-icon">🛍️</span> Orders
+          </button>
+          <button class="admin-nav-item" data-section="section-menu">
+            <span class="nav-icon">🍽️</span> Menu Items
+          </button>
+          <button class="admin-nav-item" data-section="section-delivery">
+            <span class="nav-icon">🚴</span> Delivery
+          </button>
+          <button class="admin-nav-item" data-section="section-reports">
+            <span class="nav-icon">📈</span> Reports
+          </button>
+          <div style="border-top:1px solid rgba(255,255,255,.06);margin:1rem 0;padding-top:1rem">
+            <button class="admin-nav-item" onclick="logout()">
+              <span class="nav-icon">🚪</span> Logout
+            </button>
+            <a href="index.html" class="admin-nav-item" style="display:flex;align-items:center;gap:.75rem">
+              <span class="nav-icon">🏠</span> View Site
+            </a>
+          </div>
+        </nav>
+      </div>
+
+      <!-- MAIN -->
+      <div class="admin-main">
+
+        <!-- DASHBOARD SECTION -->
+        <div class="admin-section show" id="section-dashboard">
+          <div class="admin-main-header">
+            <div>
+              <h2>Dashboard Overview</h2>
+              <p style="font-size:.85rem;margin-top:.25rem">Welcome back, Admin! Here's what's happening today.</p>
+            </div>
+            <div style="display:flex;gap:.75rem">
+              <button class="btn btn-outline btn-sm" onclick="location.reload()">🔄 Refresh</button>
+              <a href="tracking.html" class="btn btn-primary btn-sm">🚴 Live Map</a>
+            </div>
+          </div>
+
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-icon">🛍️</div>
+              <div class="val" id="stat-orders">0</div>
+              <div class="lbl">Total Orders</div>
+              <div class="trend">↑ 12% from yesterday</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon">💰</div>
+              <div class="val" id="stat-revenue">₹0</div>
+              <div class="lbl">Total Revenue</div>
+              <div class="trend">↑ 8% from last week</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon">⏳</div>
+              <div class="val" id="stat-pending">0</div>
+              <div class="lbl">Pending Orders</div>
+              <div class="trend" style="color:var(--gold)">Needs attention</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon">⭐</div>
+              <div class="val">4.9</div>
+              <div class="lbl">Avg. Rating</div>
+              <div class="trend">Based on 2,300+ reviews</div>
+            </div>
+          </div>
+
+          <!-- Chart -->
+          <div class="chart-card">
+            <h4>Weekly Orders — Last 7 Days</h4>
+            <div class="mini-chart" id="mini-chart" style="height:120px;gap:8px;align-items:flex-end;display:flex"></div>
+            <div style="display:flex;justify-content:space-between;font-size:.75rem;color:var(--muted);margin-top:.5rem;padding:0 2px">
+              <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+            </div>
+          </div>
+
+          <!-- Revenue categories -->
+          <div class="chart-card">
+            <h4>Revenue by Category</h4>
+            <div style="display:flex;flex-direction:column;gap:1rem;margin-top:1rem">
+              <div>
+                <div style="display:flex;justify-content:space-between;font-size:.85rem;margin-bottom:.35rem"><span style="color:var(--text)">Main Course</span><span style="color:var(--gold)">42%</span></div>
+                <div class="revenue-bar"><div class="revenue-fill" style="width:42%"></div></div>
+              </div>
+              <div>
+                <div style="display:flex;justify-content:space-between;font-size:.85rem;margin-bottom:.35rem"><span style="color:var(--text)">Starters</span><span style="color:var(--gold)">28%</span></div>
+                <div class="revenue-bar"><div class="revenue-fill" style="width:28%"></div></div>
+              </div>
+              <div>
+                <div style="display:flex;justify-content:space-between;font-size:.85rem;margin-bottom:.35rem"><span style="color:var(--text)">Biryani & Rice</span><span style="color:var(--gold)">18%</span></div>
+                <div class="revenue-bar"><div class="revenue-fill" style="width:18%"></div></div>
+              </div>
+              <div>
+                <div style="display:flex;justify-content:space-between;font-size:.85rem;margin-bottom:.35rem"><span style="color:var(--text)">Desserts & Drinks</span><span style="color:var(--gold)">12%</span></div>
+                <div class="revenue-bar"><div class="revenue-fill" style="width:12%"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ORDERS SECTION -->
+        <div class="admin-section" id="section-orders">
+          <div class="admin-main-header">
+            <h2>Manage Orders</h2>
+            <a href="tracking.html" class="btn btn-primary btn-sm">🗺️ Live Map</a>
+          </div>
+
+          <div style="background:var(--dark2);border:1px solid rgba(255,255,255,.06);border-radius:var(--radius-lg);overflow:hidden">
+            <div class="orders-table-wrap">
+              <table class="orders-table">
+                <thead>
+                  <tr>
+                    <th>Order ID</th><th>Customer</th><th>Items</th>
+                    <th>Total</th><th>Status</th><th>Track</th><th>Invoice</th>
+                  </tr>
+                </thead>
+                <tbody id="admin-orders-tbody">
+                  <tr><td colspan="7" style="text-align:center;padding:2rem;color:var(--muted)">Loading orders…</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- MENU SECTION -->
+        <div class="admin-section" id="section-menu">
+          <div class="admin-main-header">
+            <h2>Menu Management</h2>
+            <button class="btn btn-primary btn-sm">+ Add Item</button>
+          </div>
+          <div class="glass-card" style="margin-bottom:1.5rem">
+            <h4 style="margin-bottom:1.5rem;color:var(--text)">Add / Edit Menu Item</h4>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+              <div class="form-group"><label>Item Name</label><input type="text" placeholder="e.g. Butter Chicken" /></div>
+              <div class="form-group"><label>Price (₹)</label><input type="number" placeholder="349" /></div>
+              <div class="form-group"><label>Category</label>
+                <select><option>Starter</option><option>Main Course</option><option>Bread</option><option>Rice & Biryani</option><option>Dessert</option><option>Beverage</option></select>
+              </div>
+              <div class="form-group"><label>Emoji Icon</label><input type="text" placeholder="🍛" /></div>
+              <div class="form-group" style="grid-column:1/-1"><label>Description</label><textarea placeholder="Item description…"></textarea></div>
+            </div>
+            <button class="btn btn-primary" onclick="toastHelper()">💾 Save Item</button>
+          </div>
+          <div style="background:var(--dark2);border:1px solid rgba(255,255,255,.06);border-radius:var(--radius);padding:1.5rem;text-align:center;color:var(--muted)">
+            <p>Menu items are managed via the <a href="menu.html" style="color:var(--gold)">Menu Page</a>. Full CMS integration available in production.</p>
+          </div>
+        </div>
+
+        <!-- DELIVERY SECTION -->
+        <div class="admin-section" id="section-delivery">
+          <div class="admin-main-header">
+            <h2>Delivery Management</h2>
+            <a href="tracking.html" class="btn btn-primary btn-sm">🗺️ Open Live Map</a>
+          </div>
+          <div class="stats-grid" style="grid-template-columns:repeat(3,1fr)">
+            <div class="stat-card"><div class="stat-icon">🚴</div><div class="val">3</div><div class="lbl">Active Agents</div></div>
+            <div class="stat-card"><div class="stat-icon">🛵</div><div class="val">18 min</div><div class="lbl">Avg. Delivery Time</div></div>
+            <div class="stat-card"><div class="stat-icon">📍</div><div class="val">5 km</div><div class="lbl">Delivery Radius</div></div>
+          </div>
+          <div class="chart-card">
+            <h4>Active Delivery Agents</h4>
+            <div style="display:flex;flex-direction:column;gap:1rem;margin-top:1rem">
+              <div class="agent-card"><div class="agent-avatar">🚴</div><div class="agent-info"><h5>Rajesh Kumar</h5><p>⭐ 4.8 · Currently Delivering</p></div><span class="status-badge status-delivery">Active</span></div>
+              <div class="agent-card"><div class="agent-avatar">🛵</div><div class="agent-info"><h5>Suresh Yadav</h5><p>⭐ 4.6 · Available</p></div><span class="status-badge status-delivered">Available</span></div>
+              <div class="agent-card"><div class="agent-avatar">🚲</div><div class="agent-info"><h5>Mohan Prasad</h5><p>⭐ 4.7 · On Break</p></div><span class="status-badge status-cancelled">Break</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- REPORTS SECTION -->
+        <div class="admin-section" id="section-reports">
+          <div class="admin-main-header">
+            <h2>Reports & Analytics</h2>
+            <button class="btn btn-outline btn-sm" onclick="window.print()">🖨️ Print Report</button>
+          </div>
+          <div class="stats-grid">
+            <div class="stat-card"><div class="stat-icon">📅</div><div class="val">₹24,580</div><div class="lbl">Today's Revenue</div></div>
+            <div class="stat-card"><div class="stat-icon">📆</div><div class="val">₹1,62,340</div><div class="lbl">This Month</div></div>
+            <div class="stat-card"><div class="stat-icon">🏆</div><div class="val">Butter Chicken</div><div class="lbl">Top Selling Item</div></div>
+            <div class="stat-card"><div class="stat-icon">🕐</div><div class="val">7–9 PM</div><div class="lbl">Peak Hours</div></div>
+          </div>
+          <div class="chart-card">
+            <h4>Monthly Revenue Trend (2025)</h4>
+            <div style="display:flex;gap:6px;align-items:flex-end;height:140px;margin-top:1rem">
+              <div class="mini-bar" style="height:45%;background:rgba(244,180,0,.4)" title="Jan"></div>
+              <div class="mini-bar" style="height:60%" title="Feb"></div>
+              <div class="mini-bar" style="height:52%;background:rgba(244,180,0,.4)" title="Mar"></div>
+              <div class="mini-bar" style="height:75%" title="Apr"></div>
+              <div class="mini-bar" style="height:65%;background:rgba(244,180,0,.4)" title="May"></div>
+              <div class="mini-bar" style="height:80%" title="Jun"></div>
+              <div class="mini-bar" style="height:90%;background:var(--gold)" title="Jul (current)"></div>
+            </div>
+            <div style="display:flex;justify-content:space-between;font-size:.7rem;color:var(--muted);margin-top:.5rem">
+              <span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span><span>Jul</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script src="script.js"></script>
+<script>
+  function toastHelper() { if(typeof toast==='function') toast('Item saved successfully!', 'success'); }
+  document.addEventListener('DOMContentLoaded', () => {
+    const orders = JSON.parse(localStorage.getItem('tso_orders') || '[]');
+    const statEl = document.getElementById('stat-orders');
+    const revEl  = document.getElementById('stat-revenue');
+    const penEl  = document.getElementById('stat-pending');
+    if (statEl) statEl.textContent = orders.length + 48; // 48 seed orders
+    if (revEl)  {
+      const rev = orders.reduce((s,o) => s + (o.total||0), 0) + 42650;
+      revEl.textContent = '₹' + rev.toLocaleString('en-IN');
+    }
+    if (penEl) penEl.textContent = orders.filter(o => o.status !== 'delivered').length + 3;
+  });
+</script>
+</body>
+</html>

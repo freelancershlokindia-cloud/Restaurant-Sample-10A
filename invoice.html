@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Invoice — THE SAMPLE ONE</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    @media print {
+      .navbar, .back-to-top, footer, .invoice-actions, .cart-icon { display: none !important; }
+      body { background: white; color: black; }
+      .invoice-wrapper { border: 1px solid #ddd; }
+      .invoice-header { background: #f9f9f9 !important; }
+      .invoice-body, .invoice-footer, .invoice-totals { background: white !important; }
+      h2, h3, h4, h5 { color: #111 !important; }
+      p, td, th, span { color: #444 !important; }
+      .invoice-logo div { color: #c8960a !important; }
+      .invoice-meta h2 { color: #c8960a !important; }
+      .total-row:last-child { color: #c8960a !important; }
+    }
+  </style>
+</head>
+<body>
+<nav class="navbar">
+  <a href="index.html" class="nav-logo">THE SAMPLE <span>ONE</span></a>
+  <div class="nav-links">
+    <a href="index.html">Home</a><a href="menu.html">Menu</a>
+    <a href="orders.html">My Orders</a><a href="tracking.html">🚴 Track</a>
+  </div>
+  <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="index.html">Home</a><a href="orders.html">Orders</a>
+</div>
+
+<div class="page-hero" style="padding-bottom:2rem">
+  <span class="tag">Order Invoice</span>
+  <h1>Tax <span class="gold">Invoice</span></h1>
+</div>
+
+<section style="padding-top:2rem">
+  <div class="container">
+    <div id="invoice-content">
+      <div style="text-align:center;padding:3rem;color:var(--muted)">
+        <div class="loader-ring" style="margin:0 auto 1rem"></div>
+        <p>Loading invoice…</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand"><h3>THE SAMPLE ONE</h3><p>Premium dining in Ranchi since 2018.</p></div>
+    <div class="footer-col"><h5>Navigate</h5><a href="index.html">Home</a><a href="menu.html">Menu</a><a href="orders.html">Orders</a></div>
+    <div class="footer-col"><h5>Help</h5><a href="contact.html">Contact</a><a href="tracking.html">Track</a></div>
+    <div class="footer-col"><h5>Legal</h5><a href="#">Privacy</a><a href="#">Terms</a></div>
+  </div>
+  <div class="footer-bottom"><p>© 2025 The Sample One</p></div>
+</footer>
+
+<button class="back-to-top">↑</button>
+<script src="script.js"></script>
+</body>
+</html>

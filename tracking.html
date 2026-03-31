@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Live Tracking — THE SAMPLE ONE</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <style>
+    .tracking-page { padding-top: var(--nav-h); background: var(--black); min-height: 100vh; }
+    .tracking-top-bar {
+      background: var(--dark); border-bottom: 1px solid rgba(255,255,255,0.06);
+      padding: 1.5rem 5%;
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+    }
+    .tracking-top-bar h2 { font-size: 1.5rem; }
+    #delivery-map { width: 100%; height: 100%; min-height: 480px; z-index: 1; }
+    .map-wrapper { position: relative; flex: 1; min-height: 480px; }
+    .tracking-layout { display: grid; grid-template-columns: 380px 1fr; min-height: calc(100vh - var(--nav-h) - 84px); }
+
+    @media (max-width: 900px) {
+      .tracking-layout { grid-template-columns: 1fr; }
+      .tracking-panel { order: 2; max-height: none; }
+      .map-wrapper { order: 1; min-height: 360px; }
+    }
+    @media (max-width: 480px) {
+      .map-wrapper { min-height: 280px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="index.html" class="nav-logo">THE SAMPLE <span>ONE</span></a>
+  <div class="nav-links">
+    <a href="index.html">Home</a><a href="menu.html">Menu</a>
+    <a href="about.html">About</a><a href="reviews.html">Reviews</a>
+    <a href="contact.html">Contact</a><a href="orders.html">My Orders</a>
+    <a href="tracking.html" class="active">🚴 Track</a>
+  </div>
+  <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="index.html">Home</a><a href="menu.html">Menu</a>
+  <a href="orders.html">My Orders</a><a href="tracking.html">🚴 Track</a>
+</div>
+
+<div class="tracking-page">
+
+  <!-- TOP BAR -->
+  <div class="tracking-top-bar">
+    <div>
+      <h2>Live Delivery <span class="gold">Tracking</span></h2>
+      <span class="order-id-tag" id="tracking-order-id">Loading…</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:.75rem">
+      <span class="agent-status"><span class="live-dot"></span>LIVE</span>
+      <a href="orders.html" class="btn btn-dark btn-sm">← Orders</a>
+    </div>
+  </div>
+
+  <div class="tracking-layout">
+
+    <!-- PANEL -->
+    <div class="tracking-panel">
+
+      <!-- ETA -->
+      <div class="eta-card">
+        <div class="eta-time" id="eta-time">15:00</div>
+        <div class="eta-label">Estimated Arrival Time</div>
+        <div style="margin-top:.75rem;font-size:.85rem;color:var(--text)" id="current-status-label">Order Placed</div>
+      </div>
+
+      <!-- Delivery Info -->
+      <div class="delivery-info">
+        <div class="info-chip">
+          <div class="val" id="dist-remaining">2.4 km</div>
+          <div class="lbl">Distance</div>
+        </div>
+        <div class="info-chip">
+          <div class="val" id="speed-val">22 km/h</div>
+          <div class="lbl">Agent Speed</div>
+        </div>
+      </div>
+
+      <!-- Agent -->
+      <div class="agent-card">
+        <div class="agent-avatar">🚴</div>
+        <div class="agent-info">
+          <h5>Rajesh Kumar</h5>
+          <p>⭐ 4.8 · 2,340 deliveries</p>
+        </div>
+        <div class="agent-status" style="margin-left:auto">
+          <span class="live-dot"></span> Online
+        </div>
+      </div>
+
+      <!-- Status Steps -->
+      <div class="status-steps">
+
+        <div class="status-step active" id="step-0">
+          <div class="step-connector">
+            <div class="step-dot">📋</div>
+            <div class="step-line"></div>
+          </div>
+          <div class="step-content">
+            <h5>Order Placed</h5>
+            <p>Your order has been received</p>
+            <div class="step-time" id="time-0"></div>
+          </div>
+        </div>
+
+        <div class="status-step" id="step-1">
+          <div class="step-connector">
+            <div class="step-dot">👨‍🍳</div>
+            <div class="step-line"></div>
+          </div>
+          <div class="step-content">
+            <h5>Preparing</h5>
+            <p>Chef is cooking your food</p>
+            <div class="step-time" id="time-1"></div>
+          </div>
+        </div>
+
+        <div class="status-step" id="step-2">
+          <div class="step-connector">
+            <div class="step-dot">✅</div>
+            <div class="step-line"></div>
+          </div>
+          <div class="step-content">
+            <h5>Picked Up</h5>
+            <p>Order packed & ready</p>
+            <div class="step-time" id="time-2"></div>
+          </div>
+        </div>
+
+        <div class="status-step" id="step-3">
+          <div class="step-connector">
+            <div class="step-dot">🚴</div>
+            <div class="step-line"></div>
+          </div>
+          <div class="step-content">
+            <h5>Out for Delivery</h5>
+            <p>Agent on the way to you!</p>
+            <div class="step-time" id="time-3"></div>
+          </div>
+        </div>
+
+        <div class="status-step" id="step-4">
+          <div class="step-connector">
+            <div class="step-dot">📍</div>
+            <div class="step-line"></div>
+          </div>
+          <div class="step-content">
+            <h5>Near You</h5>
+            <p>Almost there!</p>
+            <div class="step-time" id="time-4"></div>
+          </div>
+        </div>
+
+        <div class="status-step" id="step-5">
+          <div class="step-connector">
+            <div class="step-dot">🎉</div>
+          </div>
+          <div class="step-content">
+            <h5>Delivered</h5>
+            <p>Enjoy your meal!</p>
+            <div class="step-time" id="time-5"></div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Order Summary -->
+      <div style="margin-top:1.5rem">
+        <h5 style="font-size:.85rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:1rem">Order Summary</h5>
+        <div id="tracking-items" style="font-size:.9rem"></div>
+        <div style="margin-top:1rem;font-size:.85rem;color:var(--muted)">
+          Delivering to: <span style="color:var(--text)" id="tracking-customer">—</span>
+        </div>
+      </div>
+
+      <!-- Action buttons -->
+      <div style="display:flex;gap:.75rem;margin-top:1.5rem">
+        <a href="invoice.html" class="btn btn-outline btn-sm" style="flex:1;justify-content:center">🧾 Invoice</a>
+        <a href="menu.html" class="btn btn-dark btn-sm" style="flex:1;justify-content:center">+ Reorder</a>
+      </div>
+    </div>
+
+    <!-- MAP -->
+    <div class="map-wrapper">
+      <div class="map-loader" id="map-loader">
+        <div class="loader-ring"></div>
+        <p>Loading live map…</p>
+        <p style="font-size:.75rem;color:var(--muted)">Connecting to Ranchi GPS network</p>
+      </div>
+      <div id="delivery-map"></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="script.js"></script>
+<script>
+// Override updateStatusUI to also set timestamps
+const origUpdateStatus = updateStatusUI;
+function updateStatusUI(idx) {
+  const steps = document.querySelectorAll('.status-step');
+  steps.forEach((step, i) => {
+    step.classList.remove('done', 'active');
+    if (i < idx) {
+      step.classList.add('done');
+      const timeEl = document.getElementById('time-' + i);
+      if (timeEl && !timeEl.textContent) {
+        const d = new Date();
+        timeEl.textContent = d.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' });
+      }
+    } else if (i === idx) {
+      step.classList.add('active');
+      const timeEl = document.getElementById('time-' + i);
+      if (timeEl && !timeEl.textContent) {
+        const d = new Date();
+        timeEl.textContent = d.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' });
+      }
+    }
+  });
+  const labelEl = document.getElementById('current-status-label');
+  const STATUSES_L = ['Order Placed','Preparing','Picked Up','Out for Delivery','Near You','Delivered'];
+  if (labelEl) labelEl.textContent = STATUSES_L[idx] || '';
+}
+// Set placed timestamp immediately
+window.addEventListener('DOMContentLoaded', () => {
+  const t0 = document.getElementById('time-0');
+  if (t0) t0.textContent = new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' });
+});
+</script>
+</body>
+</html>
